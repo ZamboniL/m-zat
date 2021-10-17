@@ -1,23 +1,6 @@
 version: '3'
 
 services:
-  app:
-    container_name: 'zat-api'
-    build:
-      context: .
-      dockerfile: Dockerfile.dev
-    ports:
-      - '4000:4000'
-    volumes:
-      - 'appdata:/var/lib/app/data'
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=zat
-      - TZ=America/Sao_Paulo
-    env_file:
-      - .env
-    restart: always
-
   db:
     container_name: 'db'
     image: mysql:5.7.34
@@ -33,4 +16,3 @@ services:
       - 'dbdata:/var/lib/mysql'
 volumes:
   dbdata:
-  appdata:

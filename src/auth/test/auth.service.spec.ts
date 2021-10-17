@@ -34,7 +34,7 @@ describe('AuthService', () => {
     it('correctly compares the hash', async () => {
       const reqMock = { email: 'teste@email.com', password: '123456' };
       const userMock = {
-        id: '1',
+        id: 1,
         email: 'teste@email.com',
         name: 'João Silva',
         password:
@@ -45,17 +45,17 @@ describe('AuthService', () => {
         .spyOn(usersService, 'findOne')
         .mockImplementation(async () => userMock);
 
-      const { password: _, ...result } = userMock;
+      const { id } = userMock;
 
       expect(
         await service.validateUser(reqMock.email, reqMock.password),
-      ).toStrictEqual(result);
+      ).toStrictEqual({ id });
     });
 
     it('will return null if the password does not checkout', async () => {
       const reqMock = { email: 'teste@email.com', password: '123456' };
       const userMock = {
-        id: '1',
+        id: 1,
         email: 'teste@email.com',
         name: 'João Silva',
         password: 'invalidHash',
@@ -80,9 +80,7 @@ describe('AuthService', () => {
 
       expect(
         await service.login({
-          email: 'teste@gmail.com',
-          id: '1234',
-          name: 'João Silva',
+          id: 1234,
         }),
       ).toStrictEqual({ accessToken: jwtMock });
     });

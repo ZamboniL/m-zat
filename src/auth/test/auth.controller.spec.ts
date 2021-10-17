@@ -44,7 +44,7 @@ describe('AuthController', () => {
   });
 
   describe('login', () => {
-    const mockUser = { email: 'test@email.com', id: '9000' };
+    const mockUser = { id: 9000 };
 
     it('will return the result of service.login', async () => {
       jest

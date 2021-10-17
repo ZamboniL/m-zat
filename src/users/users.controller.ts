@@ -11,7 +11,7 @@ import { JwtAuthGuard } from 'auth/guard';
 import { ValidationException } from 'common/exception/validation.exception';
 import { Request } from 'express';
 import { YupValidationPipe } from 'yup.validation.pipe';
-import { CreateUser } from './model';
+import { CreateUserDto } from './dto';
 import { createUserSchema } from './schema/create-user.schema';
 import { UsersService } from './users.service';
 
@@ -26,7 +26,7 @@ export class UsersController {
 
   @Post()
   @UsePipes(new YupValidationPipe(createUserSchema))
-  async create(@Body() createUserDto: CreateUser) {
+  async create(@Body() createUserDto: CreateUserDto) {
     try {
       await this.usersService.create({
         name: createUserDto.name,

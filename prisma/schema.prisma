@@ -7,13 +7,41 @@ datasource db {
 }
 
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
   binaryTargets = ["native", "linux-musl"]
 }
 
 model User {
-  id       String @id @default(uuid())
-  email    String @unique
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  name         String
+  password     String
+  buckets      Bucket[]
+  ownedBuckets Bucket[] @relation("owner")
+}
+
+model Bucket {
+  id          Int     @id @default(autoincrement())
+  slug        String  @unique
+  title       String  @db.VarChar(100)
+  description String? @db.TinyText
+  picture     String?
+  ownerId     Int
+  owner       User   @relation(name: "owner", fields: [ownerId], references: [id])
+  users       User[]
+  roles       Role[]
+}
+
+model Role {
+  id       Int    @id @default(autoincrement())
   name     String
-  password String
+  bucketId Int
+  bucket   Bucket @relation(fields: [bucketId], references: [id])
+  permissions Permission[]
+}
+
+model Permission {
+  id Int @id @default(autoincrement())
+  name String
+  roles Role[]
 }

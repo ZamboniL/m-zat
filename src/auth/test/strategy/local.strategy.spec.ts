@@ -38,7 +38,7 @@ describe('LocalStrategy', () => {
   describe('validate', () => {
     it('returns the user when it is valid', async () => {
       const mockUser = {
-        id: '98776',
+        id: 98776,
         name: 'Joao Silva',
         email: 'joao@email.com',
       };
@@ -52,7 +52,7 @@ describe('LocalStrategy', () => {
 
     it('throws unauthorized exception when the user is invalid', async () => {
       const mockUser = {
-        id: '98776',
+        id: 98776,
         name: 'Joao Silva',
         email: 'joao@email.com',
       };

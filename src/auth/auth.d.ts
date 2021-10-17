@@ -1,7 +1,7 @@
-import { AuthenticatedUser } from './model';
+import { AuthenticatedUserDto } from './dto';
 
 declare global {
   namespace Express {
-    interface User extends AuthenticatedUser {}
+    interface User extends AuthenticatedUserDto {}
   }
 }

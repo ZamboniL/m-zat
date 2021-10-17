@@ -1,4 +1,4 @@
-export class DecodedJwt {
+export interface DecodedJwtDto {
   email: string;
   sub: string;
   iat: string;
